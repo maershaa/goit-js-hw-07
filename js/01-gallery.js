@@ -1,10 +1,14 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
+// Общий сценарий: Когда пользователь кликает на маленькое изображение, код создает модальное окно с большим изображением, отображает его и начинает слушать события клавиатуры для обработки нажатия клавиши "Escape". Когда пользователь нажимает "Escape" или кликает на кнопку "Close", модальное окно закрывается, и слушатель события клавиатуры удаляется.
+
 const galleryContainer = document.querySelector(".gallery");
 
+// Создание разметки галереи: С помощью функции createGalleryMarkup вы генерируете разметку для галереи на основе массива galleryItems.
 const galleryMarkup = createGalleryMarkup(galleryItems);
 
+// Вставка разметки в контейнер галереи: С помощью galleryContainer.insertAdjacentHTML("beforeend", galleryMarkup); вы вставляете сгенерированную разметку внутрь контейнера галереи.
 galleryContainer.insertAdjacentHTML("beforeend", galleryMarkup);
 
 galleryContainer.addEventListener("click", onGalleryContainerClick);
@@ -29,6 +33,7 @@ function createGalleryMarkup(galleryItems) {
     .join("");
 }
 
+// onGalleryContainerClick(evt): Это обработчик события клика на контейнере галереи. Он открывает модальное окно с большим изображением, когда пользователь кликает на маленькое изображение.
 function onGalleryContainerClick(evt) {
   evt.preventDefault();
 
@@ -47,7 +52,10 @@ function onGalleryContainerClick(evt) {
 `
   );
 
+  // instance.show(): Этот метод открывает модальное окно.
   instance.show();
+
+  // Вложенная функция onEscKeyPress(event): Эта функция отвечает за обработку нажатия клавиши "Escape" и закрытие модального окна. Вы добавляете слушатель события клавиатуры для этой функции при открытии модального окна и удаляете его при закрытии модального окна.
   function onEscKeyPress(event) {
     if (event.key === "Escape" || event.key === "Esc") {
       instance.close();

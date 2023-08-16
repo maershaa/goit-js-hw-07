@@ -42,3 +42,25 @@
 .gallery__link:hover {
   cursor: zoom-in;
 }
+
+/* Стили для 2 задания */
+.custom-close {
+  font-size: 36px;
+  background: none;
+  border: none;
+  color: gray;
+  cursor: pointer;
+}
+
+.custom-prev,
+.custom-next {
+  font-size: 36px;
+  color: gray;
+  cursor: pointer;
+}
+
+.custom-close:hover,
+.custom-prev:hover,
+.custom-next:hover {
+  color: darkgray;
+}
