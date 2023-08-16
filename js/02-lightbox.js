@@ -1,5 +1,9 @@
+// Здесь происходит импорт массива galleryItems из файла gallery - items.js, который содержит информацию о предварительных, оригинальных изображениях и их описаниях.
+
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
+
+//======= Этот код создает интерактивную галерею изображений на веб-странице с использованием библиотеки SimpleLightbox.
 
 const galleryContainer = document.querySelector(".gallery");
 
@@ -9,6 +13,7 @@ const galleryMarkup = createGalleryMarkup(galleryItems);
 // Вставка разметки в контейнер галереи: С помощью galleryContainer.insertAdjacentHTML("beforeend", galleryMarkup); вы вставляете сгенерированную разметку внутрь контейнера галереи.
 galleryContainer.insertAdjacentHTML("beforeend", galleryMarkup);
 
+// Этот код добавляет обработчик события клика на контейнере галереи.
 galleryContainer.addEventListener("click", onGalleryContainerClick);
 
 function createGalleryMarkup(galleryItems) {
