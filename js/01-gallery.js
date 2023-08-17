@@ -27,8 +27,7 @@ function createGalleryMarkup(galleryItems) {
           loading="lazy"
         />
       </a>
-    </li>
-    `;
+    </li>`;
     })
     .join("");
 }
@@ -37,7 +36,7 @@ function createGalleryMarkup(galleryItems) {
 function onGalleryContainerClick(evt) {
   evt.preventDefault();
 
-  if (!evt.target.classList.contains("gallery__image")) {
+  if (evt.target.nodeName !== "IMG") {
     return;
   }
 
@@ -49,11 +48,21 @@ function onGalleryContainerClick(evt) {
                <img src="${evt.target.dataset.source}" alt="${evt.target.alt}" width="800" height="600"/>
  <a>Close</a>
     </div>
-`
+`,
+    {
+      onShow: (instance) => console.log("onShow", instance),
+      onClose: (instance) => console.log("onClose", instance),
+    }
   );
 
   // instance.show(): Этот метод открывает модальное окно.
   instance.show();
+
+  //  обработчик клика на изображение
+  const modalImage = instance.element().querySelector("img");
+  modalImage.addEventListener("click", () => {
+    instance.close();
+  });
 
   // Вложенная функция onEscKeyPress(event): Эта функция отвечает за обработку нажатия клавиши "Escape" и закрытие модального окна. Вы добавляете слушатель события клавиатуры для этой функции при открытии модального окна и удаляете его при закрытии модального окна.
   function onEscKeyPress(event) {
