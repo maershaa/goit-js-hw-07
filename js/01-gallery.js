@@ -45,7 +45,7 @@ function onGalleryContainerClick(evt) {
   const instance = basicLightbox.create(
     `
     <div class="modal">
-               <img src="${evt.target.dataset.source}" alt="${evt.target.alt}" width="800" height="600"/>
+               <img src="${evt.target.dataset.source}" loading="lazy" alt="${evt.target.alt}" width="800" height="600"/>
  <a>Close</a>
     </div>
 `,
@@ -58,7 +58,7 @@ function onGalleryContainerClick(evt) {
   // instance.show(): Этот метод открывает модальное окно.
   instance.show();
 
-  //  обработчик клика на изображение
+  //  закрытие модального окна при нажатии на изображение
   const modalImage = instance.element().querySelector("img");
   modalImage.addEventListener("click", () => {
     instance.close();
@@ -80,22 +80,22 @@ function onGalleryContainerClick(evt) {
 // Выбор всех изображений для ленивой загрузки: После проверки, независимо от выбранной стратегии загрузки, код выбирает все изображения с атрибутом data-src.
 // Добавление обработчика события load: Для каждого выбранного изображения добавляется обработчик события load, который будет вызван, когда изображение полностью загрузится. Это можно использовать, например, чтобы добавить анимацию или другие действия после загрузки изображения.
 // В итоге, этот код обеспечивает ленивую загрузку изображений на странице в зависимости от возможностей браузера, используя подход feature detection и, если необходимо, подключая библиотеку Lazysizes для более широкой поддержки.
-if ("loading" in HTMLImageElement.prototype) {
-  const lasyImages = document.querySelectorAll('img[loading="lasy"]');
-  lasyImages.forEach((img) => {
-    img.src = img.dataset.src;
-  });
-} else {
-  const script = document.createElement("script");
-  script.src =
-    "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js";
-  script.integrity =
-    "sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ==";
-  script.crossorigin = "anonymous";
-  script.referrerpolicy = "no-referrer";
-  document.body.appendChild(script);
-}
-const lasyImages = document.querySelectorAll("img[data-src]");
-lasyImages.forEach((image) => {
-  image.addEventListener("load", onImageLoaded, { once: true });
-});
+// if ("loading" in HTMLImageElement.prototype) {
+//   const lasyImages = document.querySelectorAll('img[loading="lasy"]');
+//   lasyImages.forEach((img) => {
+//     img.src = img.dataset.src;
+//   });
+// } else {
+//   const script = document.createElement("script");
+//   script.src =
+//     "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js";
+//   script.integrity =
+//     "sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ==";
+//   script.crossorigin = "anonymous";
+//   script.referrerpolicy = "no-referrer";
+//   document.body.appendChild(script);
+// }
+// const lasyImages = document.querySelectorAll("img[data-src]");
+// lasyImages.forEach((image) => {
+//   image.addEventListener("load", onImageLoaded, { once: true });
+// });
