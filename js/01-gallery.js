@@ -50,8 +50,11 @@ function onGalleryContainerClick(evt) {
     </div>
 `,
     {
-      onShow: (instance) => console.log("onShow", instance),
-      onClose: (instance) => console.log("onClose", instance),
+      onShow: (instance) => window.addEventListener("onShow", onEscKeyPress),
+      onClose: (instance) => window.addEventListener("onClose", onEscKeyPress),
+      onShow: (instance) => window.addEventListener("keydown", onEscKeyPress),
+      onClose: (instance) =>
+        window.removeEventListener("keydown", onEscKeyPress),
     }
   );
 
@@ -68,10 +71,8 @@ function onGalleryContainerClick(evt) {
   function onEscKeyPress(event) {
     if (event.key === "Escape" || event.key === "Esc") {
       instance.close();
-      document.removeEventListener("keydown", onEscKeyPress);
     }
   }
-  document.addEventListener("keydown", onEscKeyPress);
 }
 
 //  код ниже реализует ленивую загрузку изображений с использованием feature detection (определения возможностей браузера) для определения, поддерживается ли атрибут loading у элемента img. Вот по шагам, что происходит в этом коде:
