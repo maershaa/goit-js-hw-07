@@ -50,8 +50,6 @@ function onGalleryContainerClick(evt) {
     </div>
 `,
     {
-      onShow: (instance) => window.addEventListener("onShow", onEscKeyPress),
-      onClose: (instance) => window.addEventListener("onClose", onEscKeyPress),
       onShow: (instance) => window.addEventListener("keydown", onEscKeyPress),
       onClose: (instance) =>
         window.removeEventListener("keydown", onEscKeyPress),

@@ -44,13 +44,4 @@ const lightbox = new SimpleLightbox(".gallery a", {
     "<span class='custom-prev'>&#8249;</span>",
     "<span class='custom-next'>&#8250;</span>",
   ],
-
-  onShow: (instance) => {
-    // Получаем все изображения в lightbox
-    const images = instance.items;
-    // Добавляем обработчик события клика на каждое изображение
-    images.forEach((image) => {
-      image.addEventListener("click", () => instance.next());
-    });
-  },
 });
